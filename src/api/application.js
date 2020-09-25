@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function query(query) {
   return request({
-    url: '/server/subscriber/query',
+    url: '/server/application/query',
     method: 'get',
     params: query
   })
@@ -10,7 +10,7 @@ export function query(query) {
 
 export function create(data) {
   return request({
-    url: '/server/subscriber/create',
+    url: '/server/application/create',
     method: 'post',
     data
   })
@@ -18,7 +18,7 @@ export function create(data) {
 
 export function update(data) {
   return request({
-    url: '/server/subscriber/update',
+    url: '/server/application/update',
     method: 'post',
     data
   })
@@ -26,7 +26,7 @@ export function update(data) {
 
 export function del(subscriberId) {
   return request({
-    url: '/server/subscriber/delete/' + subscriberId,
+    url: '/server/application/delete/' + subscriberId,
     method: 'delete'
   })
 }

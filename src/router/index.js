@@ -55,14 +55,14 @@ export const constantRoutes = [
     }]
   },
   {
-    path: '/subscriber',
+    path: '/application',
     component: Layout,
     children: [
       {
         path: '',
-        component: () => import('@/views/subscriber/subscriber'),
-        name: 'Subscriber',
-        meta: {title: 'Subscriber', icon: 'el-icon-s-help', affix: true}
+        component: () => import('@/views/application/application'),
+        name: 'Application',
+        meta: {title: 'Application', icon: 'el-icon-s-help', affix: true}
       }
     ]
   },
