@@ -171,7 +171,7 @@
         </el-form-item>
         <el-form-item label="描述" prop="desc">
           <el-input type="textarea"
-                    :rows="4"
+                    :autosize="{ minRows: 2, maxRows: 5}"
                     :disabled="dialogStatus==='look'"
                     v-model="temp.desc"/>
         </el-form-item>
@@ -180,7 +180,7 @@
           :hidden="temp.applicationType!=='APPLICATION'"
           label="接收地址" prop="receiveUrl">
           <el-input type="textarea"
-                    :rows="4"
+                    :autosize="{ minRows: 2, maxRows: 5}"
                     :disabled="dialogStatus==='look'"
                     v-model="temp.receiveUrl"/>
         </el-form-item>
