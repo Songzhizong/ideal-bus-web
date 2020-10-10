@@ -9,7 +9,7 @@
         @keyup.enter.native="handleFilter"/>
       <el-select
         v-model="listQuery.applicationType"
-        clearable placeholder="订阅者类型"
+        clearable placeholder="应用类型"
         style="width: 180px; margin-right: 1em;"
         @change="handleFilter">
         <el-option
@@ -84,7 +84,7 @@
           <div @click="handleLook(row)"
                style="cursor:pointer;text-decoration:none;">
             <span v-if="row.applicationType===applicationType[0].name">
-              <el-tag type="primary"><b>内部订阅者</b></el-tag>
+              <el-tag type="primary"><b>内部应用</b></el-tag>
             </span>
             <span v-else>
               <el-tag type="warning"><b>外部应用</b></el-tag>
@@ -156,10 +156,10 @@
         <el-form-item label="名称" prop="title">
           <el-input v-model="temp.title" :disabled="dialogStatus==='look'"/>
         </el-form-item>
-        <el-form-item label="订阅者类型" prop="routeStrategy">
+        <el-form-item label="应用类型" prop="routeStrategy">
           <el-select
             v-model="temp.applicationType"
-            clearable placeholder="选择订阅者类型"
+            clearable placeholder="选择应用类型"
             :disabled="dialogStatus==='look'"
             style="width: 400px; margin-right: 1em;">
             <el-option
@@ -177,7 +177,7 @@
         </el-form-item>
 
         <el-form-item
-          :hidden="temp.applicationType!=='APPLICATION'"
+          :hidden="temp.applicationType!=='EXTERNAL'"
           label="接收地址" prop="receiveUrl">
           <el-input type="textarea"
                     :autosize="{ minRows: 2, maxRows: 5}"
@@ -196,9 +196,9 @@
     </el-dialog>
 
     <el-dialog width="480px" :visible.sync="deleteApplicationDialog">
-      <p style="margin-top: -15px"><b style="color: red">您确认删除此订阅者吗? </b></p>
-      <p>此操作将会删除该订阅者, 并且这个结果是不可逆的.</p>
-      <p>如果您确认需要删除此订阅者, 请输入订阅者ID以确认执行此项操作. </p>
+      <p style="margin-top: -15px"><b style="color: red">您确认删除此应用吗? </b></p>
+      <p>此操作将会删除该应用, 并且这个结果是不可逆的.</p>
+      <p>如果您确认需要删除此应用, 请输入应用ID以确认执行此项操作. </p>
       <p><code style="color: indianred;">{{ temp.applicationId }}</code></p>
       <el-input v-model="deleteApplicationId" v-focus></el-input>
       <p></p>
@@ -209,7 +209,7 @@
         type="danger"
         plain
         :disabled="deleteApplicationId!==temp.applicationId"
-        @click="deleteData">我确认删除该订阅者
+        @click="deleteData">我确认删除该应用
       </el-button>
     </el-dialog>
 
@@ -230,7 +230,7 @@
         type="danger"
         plain
         :disabled="unsubscribeTopic!==subscribeTemp.topic"
-        @click="doUnSubscribe">我确认删除该订阅者
+        @click="doUnSubscribe">我确认解除该订阅关系
       </el-button>
     </el-dialog>
 
@@ -445,10 +445,10 @@ export default {
       applicationType: [
         {
           name: "INTERNAL",
-          label: "内部订阅者"
+          label: "内部应用"
         }, {
-          name: "APPLICATION",
-          label: "外部应用订阅者"
+          name: "EXTERNAL",
+          label: "外部应用"
         },
       ],
       textMap: {
