@@ -242,9 +242,19 @@
         label-position="right"
         label-width="100px"
         style="margin-left:10px; margin-right: 50px">
-        <el-form-item label="Topic" prop="topic1">
+        <el-form-item label="Topic" prop="topic">
           <el-input v-model="subscribeTemp.topic"
+                    placeholder="请输入订阅的主题"
                     :disabled="dialogStatus!=='create'"/>
+        </el-form-item>
+        <el-form-item label="名称" prop="listenerName">
+          <el-input v-model="subscribeTemp.listenerName"
+                    placeholder="请输入监听器名称"
+                    :disabled="dialogStatus!=='create'"/>
+        </el-form-item>
+        <el-form-item label="延迟表达式" prop="delayExp">
+          <el-input v-model="subscribeTemp.delayExp"
+                    placeholder=""/>
         </el-form-item>
         <el-row :gutter="24">
           <el-col :span="12">
@@ -262,7 +272,9 @@
 
         <el-form-item label="订阅条件" prop="desc">
           <el-input type="textarea"
-                    :rows="2"
+                    :autosize="{ minRows: 2}"
+                    placeholder="订阅表达式, 如:
+tenantId=10&deviceGroup^1,2,3,4|tenantId=10&age>20 "
                     v-model="subscribeTemp.condition"/>
         </el-form-item>
       </el-form>
@@ -412,6 +424,8 @@ export default {
         subscriptionId: undefined,
         applicationId: undefined,
         topic: undefined,
+        listenerName: undefined,
+        delayExp: undefined,
         condition: undefined,
         broadcast: false,
         retryCount: 0
@@ -448,6 +462,9 @@ export default {
         ],
         topic: [
           {required: true, message: "topic不能为空", trigger: "blur"},
+        ],
+        listenerName: [
+          {required: true, message: "监听器名称不能为空", trigger: "blur"},
         ],
       }
     }
